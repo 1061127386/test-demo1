@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style lang="less">
+      img {
+        display: block;
+        margin: 30px auto;
+        /* 定死图片宽高 */
+        height: 300px;
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <img
+      src="loading.jpg"
+      alt=""
+      data-src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2853553659,1775735885&fm=26&gp=0.jpg"
+    />
+    <img
+      src="loading.jpg"
+      alt=""
+      data-src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1603365312,3218205429&fm=26&gp=0.jpg"
+    />
+    <img
+      src="loading.jpg"
+      alt=""
+      data-src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1776601493,3966748998&fm=26&gp=0.jpg"
+    />
+    <img
+      src="loading.jpg"
+      alt=""
+      data-src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1243304407,1575405469&fm=26&gp=0.jpg"
+    />
+    <img
+      src="loading.jpg"
+      alt=""
+      data-src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3545561584,783374626&fm=26&gp=0.jpg"
+    />
+    <img
+      src="loading.jpg"
+      alt=""
+      data-src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3013132257,1510003281&fm=26&gp=0.jpg"
+    />
+    <img
+      src="loading.jpg"
+      alt=""
+      data-src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4280645267,277296663&fm=11&gp=0.jpg"
+    />
+    <img
+      src="loading.jpg"
+      alt=""
+      data-src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2321565319,4067122600&fm=26&gp=0.jpg"
+    />
+  </body>
+  <script>
+    // dom 加载完毕后执行
+    window.onload = () => {
+      // 监听滚动
+      window.addEventListener("scroll", (evt) => {
+        // 文档超出多少
+        let dH = evt.target.scrollingElement.scrollTop;
+        // 浏览器的显示高度
+        let wH = window.innerHeight;
+        // 获取所有图片 标签上有 data-src的属性
+        let imghArr = document.querySelectorAll("[data-src]");
+
+        for (let el of imghArr) {
+          // 图片的高度
+          let top = el.offsetTop;
+
+          if (wH + dH > top) {
+            // 获取图片上真实的路径
+            let src = el.getAttribute("src");
+            // 获取图片的自定义属性上真实路径
+            let dataSrc = el.getAttribute("data-src");
+
+            // 先判断真实路径和自定属性上的路径是否一致 一致代表已经挂载过了 不必再次添加
+            if (src != dataSrc) {
+              el.src = dataSrc;
+            }
+          }
+        }
+			});
+			// console.log(window)
+      setTimeout(() => {
+				console.log("111")
+			// 	window.pageYOffset = 100;
+			// window.scrollY = 100;
+			console.log(window.scrollTo(0,3))
+			// window.scrollBy(0,300);
+			}, 200);
+		};
+		
+  </script>
+</html>
